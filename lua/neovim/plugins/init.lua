@@ -4,6 +4,7 @@ return {
 	{ "tpope/vim-fugitive" },
 	{ "github/copilot.vim" },
 	{ "github/copilot.vim" },
+	{ "eandrju/cellular-automaton.nvim" },
 	{
 		"terryma/vim-multiple-cursors",
 		-- "mg979/vim-visual-multi",
