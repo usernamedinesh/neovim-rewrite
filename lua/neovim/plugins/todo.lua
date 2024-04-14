@@ -7,7 +7,7 @@ local M = {
 function M.config()
 	-- local todo_comments = require("todo-comments")
 	require("todo-comments").setup()
-	vim.keymap.set("n", "<leader>jj", "<cmd>TodoTelescope<cr>")
+	vim.keymap.set("n", "<leader>tj", "<cmd>TodoTelescope<cr>")
 	vim.keymap.set("n", "<leader>th", "<cmd>TodoTrouble<cr>")
 	vim.keymap.set("n", "<leader>tn", "<cmd>TodoLocList<cr>")
 	vim.keymap.set("n", "<leader>tl", "<cmd>TodoQuickFix<cr>")

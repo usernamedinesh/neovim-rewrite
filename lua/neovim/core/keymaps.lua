@@ -32,13 +32,13 @@ vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
-vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("i", "jf", "<Esc>")
 vim.keymap.set("v", "ii", "<Esc>")
 vim.keymap.set("c", "ii", "<Esc>")
 
 vim.api.nvim_set_keymap("n", "S", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap("n", "mm", ":w<CR>", { silent = false })
+vim.api.nvim_set_keymap("n", "fj", ":w<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<leader>q", ":q!<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>wq", ":wq<CR>", { silent = true })
 

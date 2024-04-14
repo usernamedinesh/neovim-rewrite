@@ -95,45 +95,76 @@ return {
 		end,
 	},
 
-	-- {
-	-- 	"hoob3rt/lualine.nvim",
-	-- 	config = function()
-	-- 		require("lualine").setup({
-	-- 			options = {
-	-- 				theme = "auto",
-	-- 				-- icons_enabled = true,
-	-- 			},
-	-- 			sections = {
-	-- 				lualine_a = { "mode" },
-	-- 				lualine_b = { "branch" },
-	-- 				lualine_c = {
-	-- 					function()
-	-- 						local current_file = vim.fn.expand("%:p")
-	-- 						return vim.fn.fnamemodify(current_file, ":~:.")
-	-- 					end,
-	-- 				},
-	-- 				-- lualine_x = { "encoding", "fileformat", "filetype" },
-	-- 				lualine_y = { "progress" },
-	-- 				lualine_z = { "location" },
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"hoob3rt/lualine.nvim",
+		config = function()
+			require("lualine").setup({
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch" },
+					lualine_c = {},
+				},
+			})
+		end,
+	},
+
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local harpoon = require("harpoon")
+
+			harpoon:setup()
+
+			vim.keymap.set("n", "<leader>a", function()
+				harpoon:list():add()
+			end)
+			vim.keymap.set("n", "<C-h>", function()
+				harpoon.ui:toggle_quick_menu(harpoon:list())
+			end)
+
+			vim.keymap.set("n", "<C-i>", function()
+				harpoon:list():select(1)
+			end)
+			vim.keymap.set("n", "<C-o>", function()
+				harpoon:list():select(2)
+			end)
+			vim.keymap.set("n", "<C-l>", function()
+				harpoon:list():select(3)
+			end)
+			vim.keymap.set("n", "<C-;>", function()
+				harpoon:list():select(4)
+			end)
+
+			-- Toggle previous & next buffers stored within Harpoon list
+			vim.keymap.set("n", "<A-i>", function()
+				harpoon:list():prev()
+			end)
+			vim.keymap.set("n", "<A-o>", function()
+				harpoon:list():next()
+			end)
+		end,
+	},
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-		opts = {
-			routes = {
-				{
-					filter = {
-						event = "notify",
-						-- kind = "",
-					},
-					opts = { skip = true },
+		config = function()
+			require("noice").setup({
+				presets = {
+					bottom_search = true, -- use a classic bottom cmdline for search
+					command_palette = false, --set true to top
+					long_message_to_split = false, -- long messages will be sent to a split
+					inc_rename = false, -- enables an input dialog for inc-rename.nvim
+					lsp_doc_border = true, -- add a border to hover docs and signature help
 				},
-			},
-		},
-
+				lsp = {
+					progress = {
+						enabled = false, --disable  lsp message when first load
+					},
+				},
+			})
+		end,
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},

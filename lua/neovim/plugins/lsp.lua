@@ -29,7 +29,8 @@ return {
 		local mason_tool_installer = require("mason-tool-installer")
 		local utils = require("lspconfig/util")
 
-		-- require("luasnip.loaders.from_vscode").lazy_load()
+		--for enabling snippet like rfce
+		require("luasnip.loaders.from_vscode").lazy_load()
 
 		local capabilities = vim.tbl_deep_extend(
 			"force",
@@ -42,7 +43,7 @@ return {
 		local on_attach = function(client, bufnr)
 			opts.buffer = bufnr
 
-			-- set keybinds
+			-- 	-- set keybinds
 			vim.keymap.set("n", "gd", function()
 				vim.lsp.buf.definition()
 			end, opts)
