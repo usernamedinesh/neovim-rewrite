@@ -9,10 +9,12 @@ vim.keymap.set("n", "U", "<C-r>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<S-m>", "<C-u>zz", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-c>", "<C-d>zz", { noremap = true, silent = true })
 
--- Map keys to navigate between buffers
--- Insert mode navigation
-vim.api.nvim_set_keymap("i", "<C-h>", "<Left>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-'>", "<Right>", { noremap = true, silent = true })
+-- Jump between markdown headers
+vim.keymap.set("n", "gj", [[/^##\+ .*<CR>]], { buffer = true, silent = true })
+vim.keymap.set("n", "gk", [[?^##\+ .*<CR>]], { buffer = true, silent = true })
+
+-- Select all
+vim.keymap.set("n", "-", "gg<S-v>G")
 
 vim.keymap.set("n", "ff", ":vsplit <CR>")
 vim.keymap.set("n", "sv", ":split <cr>")
@@ -48,10 +50,6 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-vim.keymap.set("n", "<leader>vwm", function()
-	require("vim-with-me").StartVimWithMe()
-end)
-
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
@@ -76,16 +74,6 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
-
---restart neovim
-vim.api.nvim_set_keymap("n", "<leader>rr", ':!nvim -c "qa!" &<CR>', { silent = true })
--- vim.api.nvim_set_keymap("n", "ss", ":source $MYVIMRC<CR>", { silent = true })
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>")
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
-
-vim.keymap.set("n", "<leader><leader>", function()
-	vim.cmd("so")
-end)
+-- vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>", { desc = "Jump to configuration file" })

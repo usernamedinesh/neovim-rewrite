@@ -50,7 +50,3 @@ vim.opt.isfname:append("@-@")
 vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "100"
-
--- vim.cmd("highlight MyTextColor guifg=#FF0000 ctermfg=red")
--- vim.cmd("highlight LineNr guifg=#329e56  ctermfg=red") --line number color
--- vim.cmd("highlight ColorColumn guibg=#583f3a ctermbg=black") --singcolumn

@@ -10,7 +10,7 @@ local M = {
 function M.config()
 	local telescope = require("telescope")
 	telescope.load_extension("fzf")
-	-- local builtin = require("telescope.builtin")
+	local builtin = require("telescope.builtin")
 	require("telescope").load_extension("git_worktree")
 
 	pcall(require("telescope").load_extension, "fzf")
@@ -19,7 +19,6 @@ function M.config()
 	local keymap = vim.keymap
 
 	vim.keymap.set("n", "<leader>?", function()
-		-- You can pass additional configuration to telescope to change theme, layout, etc.
 		require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 			winblend = 10,
 			previewer = false,
@@ -27,8 +26,16 @@ function M.config()
 	end, { desc = "[/] Fuzzily search in current buffer]" })
 
 	keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-	keymap.set("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { desc = "Find Oldfiles" })
 	keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
+	vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+	vim.keymap.set("n", "<leader>pw", function()
+		local word = vim.fn.expand("<cword>")
+		builtin.grep_string({ search = word })
+	end)
+	vim.keymap.set("n", "<leader>pm", function()
+		local word = vim.fn.expand("<cWORD>")
+		builtin.grep_string({ search = word })
+	end)
 	keymap.set(
 		"n",
 		"<leader>fa",
@@ -42,6 +49,9 @@ function M.config()
 		{ desc = "Find string under cursor in cwd" }
 	)
 	keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "find buffers" })
+	vim.keymap.set("n", "<leader>ps", function()
+		builtin.grep_string({ search = vim.fn.input("Grep > ") })
+	end)
 
 	vim.api.nvim_set_keymap(
 		"n",
@@ -57,12 +67,7 @@ function M.config()
 		{ noremap = true, silent = true }
 	)
 
-	vim.api.nvim_set_keymap(
-		"n",
-		"<Leader>sn",
-		'<CMD>lua require("telescope").extensions.notify.notify()<CR>',
-		{ noremap = true, silent = true }
-	)
+	vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
 	keymap.set("n", "<leader>fc", function()
 		require("telescope.builtin").find_files({
 			cwd = "/home/dinesh/.config/nvim/",
