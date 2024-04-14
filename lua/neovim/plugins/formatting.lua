@@ -16,7 +16,7 @@ return {
 				html = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
-				rust = { "prettier" },
+				rust = { "prettier", "rustfmt" },
 				go = { "goimports", "gofmt" },
 				markdown = { "prettier" },
 				graphql = { "prettier" },

@@ -1,10 +1,22 @@
 return {
-	{ "junegunn/fzf", build = "./install --all" },
+	{ "kevinhwang91/nvim-bqf", ft = "qf" },
 	{ "junegunn/fzf.vim" },
+	{
+		"junegunn/fzf",
+		build = "./install --all",
+		run = function()
+			vim.fn["fzf#install"]()
+		end,
+	},
 	{ "tpope/vim-fugitive" },
 	{ "github/copilot.vim" },
-	{ "github/copilot.vim" },
 	{ "eandrju/cellular-automaton.nvim" },
+	{ "eandrju/cellular-automaton.nvim" },
+	{
+		"nvim-lua/plenary.nvim",
+		name = "plenary",
+	},
+
 	{
 		"terryma/vim-multiple-cursors",
 		-- "mg979/vim-visual-multi",
@@ -26,6 +38,13 @@ return {
 		lazy = false,
 		config = function()
 			require("Comment").setup()
+		end,
+	},
+	{
+		"rust-lang/rust.vim",
+		ft = "rust",
+		init = function()
+			vim.g.rustfmt_autosave = 1
 		end,
 	},
 
